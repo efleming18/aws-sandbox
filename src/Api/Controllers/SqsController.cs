@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Results;
+using Amazon;
 using Amazon.Runtime;
 using Amazon.SQS;
 using Amazon.SQS.Model;
@@ -18,7 +19,7 @@ namespace Api.Controllers
             //Set up the config
             var awsConfig = new AmazonSQSConfig();
             awsConfig.ServiceURL = "http://sqs.us-west-2.amazonaws.com";
-
+            awsConfig.RegionEndpoint = RegionEndpoint.USWest2;
             //Create the SQS Client
             _sqlClient = new AmazonSQSClient(awsConfig);
 
