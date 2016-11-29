@@ -59,3 +59,42 @@ The code above will push a message to the queue we created with the content of "
 
 [Show picture of message in queue in MASE]
 
+There you have it, you've just pushed a message to your Azure Queue!
+
+For your reference, here is the code I used to quickly test this.
+**Note:** This is not typically how you would want to set this up. You would move the queue creation and set up to the Startup of the project and inject some sort of settings and/or queue objects using DI, which I'd recommend Autofac to help you out there.
+
+[code language="csharp" escaped="true"]
+using System.Net;
+using System.Web.Http;
+using Microsoft.Azure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
+
+namespace AzureWeb.Controllers
+{
+    [RoutePrefix("azure")]
+    public class QueueStorageController : ApiController
+    {
+        private readonly CloudQueue _queue;
+        public QueueStorageController()
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("AzureConnectionString"));
+            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+
+            _queue = queueClient.GetQueueReference("first-test-queue");
+
+            _queue.CreateIfNotExists();
+        }
+
+        [Route("push-message")]
+        public IHttpActionResult SendMessageToQueue()
+        {
+            _queue.AddMessage(new CloudQueueMessage("This is a test message."));
+
+            return StatusCode(HttpStatusCode.Accepted);
+        }
+    }
+}
+
+[/code]
