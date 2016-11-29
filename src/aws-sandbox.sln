@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqs", "Sqs\Sqs\Sqs.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{855156CD-6F92-4FFD-8DDD-8D672E5648DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureWeb", "AzureWeb\AzureWeb.csproj", "{87FDABA2-61C4-4592-80BD-26623F954DC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{66632063-748C-4E65-A099-FE0B84CD9385}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{855156CD-6F92-4FFD-8DDD-8D672E5648DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{855156CD-6F92-4FFD-8DDD-8D672E5648DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{855156CD-6F92-4FFD-8DDD-8D672E5648DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87FDABA2-61C4-4592-80BD-26623F954DC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87FDABA2-61C4-4592-80BD-26623F954DC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87FDABA2-61C4-4592-80BD-26623F954DC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87FDABA2-61C4-4592-80BD-26623F954DC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66632063-748C-4E65-A099-FE0B84CD9385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66632063-748C-4E65-A099-FE0B84CD9385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66632063-748C-4E65-A099-FE0B84CD9385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66632063-748C-4E65-A099-FE0B84CD9385}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

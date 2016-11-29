@@ -1,0 +1,4 @@
+Azure ServiceBus
+
+When you want to create a Service Bus queue, you'll need to create a Service Bus namespace first.
+A service bus namespace is a container that encompases all of your messaging components. For example, if you follow the Microservices architecture, you're going to to have multiple services that may benefit from communicating via messages between each other. If so, this would be a case for having one Service Bus Namespace for each microservice in your system.
