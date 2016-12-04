@@ -5,16 +5,16 @@ It is common to want to be able to use messages, or message queues in your syste
 Azure Queue Storage can be accessed anywhere via authenticated http, or https requests. In these queues, you can store millions of messages to be consumed by some process that runs in your code base to read from the queue, an Azure web role, or an Azure worker role.
 
 ##Set Up
-Before interacting with any of Azure's storage capabilites you'll need to create an Azure Storage Account. This will be place where all of the Azure Storage Data objects are stored. This can be accomplished from the Azure Portal, Azure CLI, or Azure PowerShell.
+Before interacting with any of Azure's storage capabilites you'll need to create an Azure Storage Account. This will be the place where all of the Azure Storage Data objects are stored. This can be accomplished from the Azure Portal, Azure CLI, or Azure PowerShell.
 
 Portal: https://portal.azure.com/
 CLI: https://docs.microsoft.com/en-us/azure/storage/storage-azure-cli
 PowerShell: https://docs.microsoft.com/en-us/azure/storage/storage-powershell-guide-full
 
-For this walk-through, we will be using the Azure Storage account in the cloud rather than the Azure storage emulator. I will be writing another article on using the Azure Storage emulator, but for now you can find information on it here, https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator. The existence of the Azure Storage emulator is a big advantage for developers over the AWS SQS where there is no ability to test locally.
+For this walk-through, we will be using the Azure Storage account in the cloud rather than the Azure storage emulator. I will be writing another article on using the Azure Storage emulator, but for now you can find information on it here, https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator. The existence of the Azure Storage emulator is a big advantage for developers over AWS SQS where there is no ability to test locally.
 
 ##Creating a new Queue Storage
-The first step in being able to programatically create a new queue, is to set up the Connection string for being able to communicate with your Azure Storage account. This can be accomplished by adding the following line to the **appSettings** section of your App/Web.config file.
+The first step in being able to programatically create a new queue, is to set up the connection string for being able to communicate with your Azure Storage account. This can be accomplished by adding the following line to the **appSettings** section of your App/Web.config file.
 
 ```
 [code language="csharp" escaped="true"]
@@ -28,7 +28,7 @@ After the connection string is in place, you can get to work! You'll need to ins
 	WindowsAzure.Storage NuGet packages (with Dependencies pic)
 	Microsoft.WindowsAzure.ConfigurationManager
 
-Now, the first bit of code, will be to read your ConnectionString in order to connect to your Storage Account.
+Now, the first bit of code, will be to read your connection string in order to connect to your Storage Account.
 
 ```
 [code language="csharp" escaped="true"]
@@ -44,7 +44,7 @@ CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 [/code]
 ```
 
-Now that we have the client, we can create the queue. You'll notice first, we call the **GetQueueReference** method which will get information about a queue from your Azure Storage Account. It will contain information such as whether or not the queue exists which is used in the next line where we call **CreateIfNotExists**. This will do exactly as the method says, if the queue does not exist, it will be created; if it does the command to create the queue will nto be executed.
+Now that we have the client, we can create the queue. You'll notice first, we call the **GetQueueReference** method which will get information about a queue from your Azure Storage Account. It will contain information such as whether or not the queue exists which is used in the next line where we call **CreateIfNotExists**. This will do exactly as the method says, if the queue does not exist, it will be created; if it does, the command to create the queue will not be executed.
 
 ```
 [code language="csharp" escaped="true"]
@@ -73,6 +73,8 @@ There you have it, you've just pushed a message to your Azure Queue!
 
 For your reference, here is the code I used to quickly test this.
 **Note:** This is not typically how you would want to set this up. You would move the queue creation and set up to the Startup of the project and inject some sort of settings and/or queue objects using DI, which I'd recommend Autofac to help you out there.
+
+https://autofac.org/
 
 ```
 [code language="csharp" escaped="true"]
