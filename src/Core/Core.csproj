@@ -72,6 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Azure\Interfaces\AzureQueues.cs" />
+    <Compile Include="Azure\Queues\AzureQueues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,7 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aws\" />
-    <Folder Include="Azure\Queues\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
