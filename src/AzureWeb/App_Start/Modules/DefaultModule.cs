@@ -2,7 +2,7 @@
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
-using Core.Azure.Interfaces;
+using Core.Azure.Queues;
 using Module = Autofac.Module;
 
 namespace AzureWeb.Modules
@@ -17,6 +17,7 @@ namespace AzureWeb.Modules
             builder.RegisterControllers(api);
             builder.RegisterApiControllers(api);
 
+            builder.RegisterType<AzureQueues>();
             builder.RegisterAssemblyTypes(core).AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(api).AsImplementedInterfaces();
         }
