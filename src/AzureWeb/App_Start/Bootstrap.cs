@@ -12,7 +12,7 @@ namespace AzureWeb
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("AzureConnectionString"));
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-            foreach (var queueName in AzureQueues.Names)
+            foreach (var queueName in AzureQueues.KnownQueues)
             {
                 queueClient.GetQueueReference(queueName).CreateIfNotExists();
             }

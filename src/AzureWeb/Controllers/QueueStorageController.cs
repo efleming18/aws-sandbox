@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Web.Http;
+using Core.Azure;
 using Core.Azure.Interfaces;
 using Microsoft.WindowsAzure.Storage.Queue;
 
@@ -18,7 +19,7 @@ namespace AzureWeb.Controllers
         [Route("push-message")]
         public IHttpActionResult SendMessageToQueue()
         {
-            var firstTestQueue = _queueResolver.GetQueue("first-test-queue");
+            var firstTestQueue = _queueResolver.GetQueue(AzureQueues.FirstTestQueueName);
             firstTestQueue.AddMessage(new CloudQueueMessage("This is a test message 2."));
 
             return StatusCode(HttpStatusCode.Accepted);
