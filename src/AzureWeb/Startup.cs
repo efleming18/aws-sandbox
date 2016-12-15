@@ -9,6 +9,7 @@ namespace AzureWeb
         public void Configuration(IAppBuilder app)
         {
             var container = ContainerConfig.Configure();
+            Bootstrap.CreateKnownAzureQueues();
 
             var config = ConfigureWebApi(app);
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);

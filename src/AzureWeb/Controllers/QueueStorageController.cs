@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Web.Http;
-using Core.Azure.Queues;
+using Core.Azure.Interfaces;
 using Microsoft.WindowsAzure.Storage.Queue;
 
 namespace AzureWeb.Controllers
@@ -8,17 +8,18 @@ namespace AzureWeb.Controllers
     [RoutePrefix("azure")]
     public class QueueStorageController : ApiController
     {
-        private readonly CloudQueue _queue;
+        private readonly IQueueResolver _queueResolver;
 
-        public QueueStorageController(AzureQueues queues)
+        public QueueStorageController(IQueueResolver queueResolver)
         {
-            _queue = queues.FirstTestQueue;
+            _queueResolver = queueResolver;
         }
 
         [Route("push-message")]
         public IHttpActionResult SendMessageToQueue()
         {
-            _queue.AddMessage(new CloudQueueMessage("This is a test message 2."));
+            var firstTestQueue = _queueResolver.GetQueue("first-test-queue");
+            firstTestQueue.AddMessage(new CloudQueueMessage("This is a test message 2."));
 
             return StatusCode(HttpStatusCode.Accepted);
         }

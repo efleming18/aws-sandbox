@@ -2,7 +2,7 @@
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
-using Core.Azure.Queues;
+using Core.Azure;
 using Module = Autofac.Module;
 
 namespace AzureWeb.Modules
@@ -12,12 +12,11 @@ namespace AzureWeb.Modules
         protected override void Load(ContainerBuilder builder)
         {
             var api = Assembly.GetExecutingAssembly();
-            var core = Assembly.GetAssembly(typeof(AzureQueues));
+            var core = Assembly.GetAssembly(typeof(QueueResolver));
 
             builder.RegisterControllers(api);
             builder.RegisterApiControllers(api);
 
-            builder.RegisterType<AzureQueues>();
             builder.RegisterAssemblyTypes(core).AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(api).AsImplementedInterfaces();
         }

@@ -1,19 +1,21 @@
-﻿using Microsoft.Azure;
+﻿using Core.Azure;
+using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 
-namespace Core.Azure.Queues
+namespace AzureWeb
 {
-    public class AzureQueues
+    public class Bootstrap
     {
-        public CloudQueue FirstTestQueue;
-        public AzureQueues()
+        public static void CreateKnownAzureQueues()
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("AzureConnectionString"));
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-            FirstTestQueue = queueClient.GetQueueReference("first-test-queue");
-            FirstTestQueue.CreateIfNotExists();
+            foreach (var queueName in AzureQueues.Names)
+            {
+                queueClient.GetQueueReference(queueName).CreateIfNotExists();
+            }
         }
     }
 }
